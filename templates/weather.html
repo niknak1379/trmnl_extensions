@@ -1,0 +1,45 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap"
+  rel="stylesheet"
+/>
+<div
+  class="screen screen--{{model.bit_depth}}bit screen--{{model.name}} screen--lg screen--{{model.orientation}} screen--1x"
+>
+  <div class="view view--full">
+    <style>
+      div.header {
+        font-family: "Science Gothic", sans-serif;
+        border: black solid 2px;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      li {
+        font-family: "Science Gothic", sans-serif;
+        border: black dashed 1px;
+      }
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: content;
+      }
+    </style>
+    <div class="header">
+      <h1>Today's Date: {{daily.time}}</h1>
+      <h2>Daily Max: {{daily.temperature_2m_max}}</h2>
+      <h2>Daily Min: {{daily.temperature_2m_min}}</h2>
+      <img
+        src="https://i.pinimg.com/736x/6e/f4/42/6ef442c9fd7e8d00f43b2c6a0e4291fb.jpg"
+      />
+    </div>
+    <ul>
+      {% for item in hourly.temperature_2m limit:10%}
+      <li>
+        <span>time: {{forloop.index}}</span>
+        <span>temprature: {{item}}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
