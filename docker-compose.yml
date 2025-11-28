@@ -1,6 +1,7 @@
-version: "3.8"
-
 services:
   backend:
     image: nikanostovan/trmnl_extensions:latest
-    ports: -"3000:3000"
+    container_name: trmnl_extensions
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
