@@ -29,7 +29,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            nikanostovan/personal_website_image:latest
-            nikanostovan/personal_website_image:${{ github.sha }}
-          cache-from: type=registry,ref=nikanostovan/personal_website_backend:latest
+            nikanostovan/trmnl_extensions:latest
+            nikanostovan/trmnl_extensions:${{ github.sha }}
+          cache-from: type=registry,ref=nikanostovan/trmnl_extensions:latest
           cache-to: type=inline
