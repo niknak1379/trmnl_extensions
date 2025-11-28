@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/arm64/v8
+          platforms: linux/arm64/v8, linux/amd/64
           push: true
           tags: |
             nikanostovan/trmnl_extensions:latest
