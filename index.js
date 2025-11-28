@@ -9,7 +9,7 @@ app.use(
     origin: "*",
   })
 );
-
+app.use(express.static("Static"));
 app.use("/Extensions", extensionsRouter);
 app.get("/health", (req, res) => {
   res.send("healthy").status(200);

@@ -96,9 +96,6 @@ router.get("/", async (req, res) => {
     // The 'weatherData' object now contains a simple structure, with arrays of datetimes and weather information
     console.log("\nHourly data:\n", weatherData.hourly);
     console.log("\nDaily data:\n", weatherData.daily);
-    console.log(Math.round(daily.variables(1).valuesArray()[0]));
-    let intarr = Int16Array.from(hourly.variables(0).valuesArray());
-    console.log(intarr);
     /*
   returned object format
    {
