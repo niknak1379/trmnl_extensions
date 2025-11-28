@@ -13,86 +13,90 @@ router.get("/", async (req, res) => {
     temperature_unit: "fahrenheit",
     precipitation_unit: "inch",
   };
-  const url = "https://api.open-meteo.com/v1/forecast";
-  const responses = await fetchWeatherApi(url, params);
+  try {
+    const url = "https://api.open-meteo.com/v1/forecast";
+    const responses = await fetchWeatherApi(url, params);
 
-  const response = responses[0];
+    const response = responses[0];
 
-  // ------ the API returns a serialized binary, have to use its own
-  // ------ methods to extract the data
-  // ------ https://open-meteo.com/en/docs
+    // ------ the API returns a serialized binary, have to use its own
+    // ------ methods to extract the data
+    // ------ https://open-meteo.com/en/docs
 
-  // Attributes for timezone and location
-  const latitude = response.latitude();
-  const longitude = response.longitude();
-  const elevation = response.elevation();
-  const timezone = response.timezone();
-  const timezoneAbbreviation = response.timezoneAbbreviation();
-  const utcOffsetSeconds = response.utcOffsetSeconds();
+    // Attributes for timezone and location
+    const latitude = response.latitude();
+    const longitude = response.longitude();
+    const elevation = response.elevation();
+    const timezone = response.timezone();
+    const timezoneAbbreviation = response.timezoneAbbreviation();
+    const utcOffsetSeconds = response.utcOffsetSeconds();
 
-  console.log(
-    `\nCoordinates: ${latitude}°N ${longitude}°E`,
-    `\nElevation: ${elevation}m asl`,
-    `\nTimezone: ${timezone} ${timezoneAbbreviation}`,
-    `\nTimezone difference to GMT+0: ${utcOffsetSeconds}s`
-  );
+    console.log(
+      `\nCoordinates: ${latitude}°N ${longitude}°E`,
+      `\nElevation: ${elevation}m asl`,
+      `\nTimezone: ${timezone} ${timezoneAbbreviation}`,
+      `\nTimezone difference to GMT+0: ${utcOffsetSeconds}s`
+    );
 
-  const hourly = response.hourly();
-  const daily = response.daily();
+    const hourly = response.hourly();
+    const daily = response.daily();
 
-  // Define Int64 variables so they can be processed accordingly
-  const sunrise = daily.variables(2);
-  const sunset = daily.variables(3);
+    // Define Int64 variables so they can be processed accordingly
+    const sunrise = daily.variables(2);
+    const sunset = daily.variables(3);
 
-  // Note: The order of weather variables in the URL query and the indices below need to match!
-  const weatherData = {
-    hourly: {
-      time: Array.from(
-        {
-          length:
-            (Number(hourly.timeEnd()) - Number(hourly.time())) /
-            hourly.interval(),
-        },
-        (_, i) =>
-          new Date(
-            (Number(hourly.time()) + i * hourly.interval() + utcOffsetSeconds) *
-              1000
-          )
-      ),
-      temperature_2m: hourly.variables(0).valuesArray(),
-      rain: hourly.variables(1).valuesArray(),
-    },
-    daily: {
-      time: Array.from(
-        {
-          length:
-            (Number(daily.timeEnd()) - Number(daily.time())) / daily.interval(),
-        },
-        (_, i) =>
-          new Date(
-            (Number(daily.time()) + i * daily.interval() + utcOffsetSeconds) *
-              1000
-          )
-      ),
-      temperature_2m_max: daily.variables(0).valuesArray(),
-      temperature_2m_min: daily.variables(1).valuesArray(),
-      // Map Int64 values to according structure
-      sunrise: [...Array(sunrise.valuesInt64Length())].map(
-        (_, i) =>
-          new Date((Number(sunrise.valuesInt64(i)) + utcOffsetSeconds) * 1000)
-      ),
-      // Map Int64 values to according structure
-      sunset: [...Array(sunset.valuesInt64Length())].map(
-        (_, i) =>
-          new Date((Number(sunset.valuesInt64(i)) + utcOffsetSeconds) * 1000)
-      ),
-    },
-  };
+    // Note: The order of weather variables in the URL query and the indices below need to match!
+    const weatherData = {
+      hourly: {
+        time: Array.from(
+          {
+            length:
+              (Number(hourly.timeEnd()) - Number(hourly.time())) /
+              hourly.interval(),
+          },
+          (_, i) =>
+            new Date(
+              (Number(hourly.time()) +
+                i * hourly.interval() +
+                utcOffsetSeconds) *
+                1000
+            )
+        ),
+        temperature_2m: hourly.variables(0).valuesArray(),
+        rain: hourly.variables(1).valuesArray(),
+      },
+      daily: {
+        time: Array.from(
+          {
+            length:
+              (Number(daily.timeEnd()) - Number(daily.time())) /
+              daily.interval(),
+          },
+          (_, i) =>
+            new Date(
+              (Number(daily.time()) + i * daily.interval() + utcOffsetSeconds) *
+                1000
+            )
+        ),
+        temperature_2m_max: daily.variables(0).valuesArray(),
+        temperature_2m_min: daily.variables(1).valuesArray(),
+        // Map Int64 values to according structure
+        sunrise: [...Array(sunrise.valuesInt64Length())].map(
+          (_, i) =>
+            new Date((Number(sunrise.valuesInt64(i)) + utcOffsetSeconds) * 1000)
+        ),
+        // Map Int64 values to according structure
+        sunset: [...Array(sunset.valuesInt64Length())].map(
+          (_, i) =>
+            new Date((Number(sunset.valuesInt64(i)) + utcOffsetSeconds) * 1000)
+        ),
+      },
+    };
 
-  // The 'weatherData' object now contains a simple structure, with arrays of datetimes and weather information
-  console.log("\nHourly data:\n", weatherData.hourly);
-  console.log("\nDaily data:\n", weatherData.daily);
-  /*
+    // The 'weatherData' object now contains a simple structure, with arrays of datetimes and weather information
+    console.log("\nHourly data:\n", weatherData.hourly);
+    console.log("\nDaily data:\n", weatherData.daily);
+    /*
   returned object format
     {
         "hourly": {
@@ -146,7 +150,11 @@ router.get("/", async (req, res) => {
     }
   
   */
-  res.send(weatherData).status(200);
+    res.send(weatherData).status(200);
+  } catch (e) {
+    console.log("error in weather function", e);
+    res.send(e).status(500);
+  }
 });
 
 export default router;
