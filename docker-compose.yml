@@ -1,0 +1,6 @@
+version: "3.8"
+
+services:
+  backend:
+    image: nikanostovan/trmnl_extensions:latest
+    ports: -"3000:3000"
