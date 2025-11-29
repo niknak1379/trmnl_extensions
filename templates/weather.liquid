@@ -1,0 +1,61 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap"
+  rel="stylesheet"
+/>
+<div
+  class="screen screen--{{ model.bit_depth }}bit screen--{{
+    model.name
+  }} screen--lg screen--{{ model.orientation }} screen--1x"
+>
+  <div class="view view--full">
+    <style>
+      * {
+        margin: 0;
+      }
+      div.header {
+        font-family: "Science Gothic", sans-serif;
+        border: black solid 2px;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      div.view {
+        width: 800px;
+        height: 480px;
+      }
+      ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      li {
+        font-family: "Science Gothic", sans-serif;
+        border: black dashed 1px;
+        padding: 2px;
+        list-style: none;
+      }
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: content;
+      }
+    </style>
+    <div class="header">
+      <h1>Today's Date: {{ daily.time }}</h1>
+      <h2>Daily Max: {{ daily.temperature_2m_max }}</h2>
+      <h2>Daily Min: {{ daily.temperature_2m_min }}</h2>
+      <img src="http://10.193.11.116:3000/Assets/sun.png" />
+      <img src="http://10.193.11.116:3000/Assets/sun.jpg" />
+    </div>
+    <ul>
+      {% for item in hourly.temperature_2m %}
+      <li>
+        <span>time: {{ forloop.index }}</span>
+        <span>temprature: {{ item }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
