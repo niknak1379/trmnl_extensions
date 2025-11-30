@@ -1,9 +1,6 @@
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap"
-  rel="stylesheet"
-/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Science+Gothic:wght@100..900&display=swap" rel="stylesheet">
 <div
   class="screen screen--{{ model.bit_depth }}bit screen--{{
     model.name
@@ -16,44 +13,113 @@
       }
       div.header {
         font-family: "Science Gothic", sans-serif;
-        border: black solid 2px;
-        border-radius: 10px;
+        border: black solid 4px;
+        border-bottom: black solid 8px;
+        border-right: black solid 12px;
         padding: 10px;
+        margin-top: 10px !important;
+        
+        display: flex;
+        width: 90%;
+        flex-direction: row;
+        //justify-content: space-between;
+        //gap: 100px;
+      }
+      h4{
+        font-size: 32px;
+      }
+      div.header img{
+        height: 150px;
+        width: 150px;
+      }
+      div.currentWeather span.currentTemp{
+        font-size: 96px;
+      }
+      div.currentWeather span.rain{
+        font-size: 16px;
+        font-style: italic;
+      }
+      div.currentWeather{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        margin-right: 0;
+        margin-left: auto;
+        flex-grow: 1;
+        flex-basis: 0;
+      }
+      div.minmax{
+        margin-left: 0;
+        margin-right: auto;
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
       div.view {
         width: 800px;
         height: 480px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       ul {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-between;
+        padding-right: 20px;
+        padding -left: 20px;
+        padding-top: 10px;
+        gap: 10px;
       }
 
       li {
         font-family: "Science Gothic", sans-serif;
-        border: black dashed 1px;
-        padding: 2px;
+        font-size: 32px;
+        font-family: "Doto", sans-serif;
+        font-weight: 900;
+
+        border: black solid 2px;
+        border-bottom: black solid 4px;
+        border-right: black solid 6px;
+
+        padding: 10px;
         list-style: none;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
       }
       img {
-        width: 50px;
-        height: 50px;
-        object-fit: content;
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
       }
     </style>
     <div class="header">
-      <h1>Today's Date: {{ daily.time }}</h1>
-      <h2>Daily Max: {{ daily.temperature_2m_max }}</h2>
-      <h2>Daily Min: {{ daily.temperature_2m_min }}</h2>
-      <img src="http://10.193.11.116:3000/Assets/sun.png" />
-      <img src="http://10.193.11.116:3000/Assets/sun.jpg" />
+      <div class="minmax">
+        <h1>{{ daily.time }}</h1>
+        <h4>Max: {{ daily.temperature_2m_max }}°</h4>
+        <h4>Min: {{ daily.temperature_2m_min }}°</h4>
+      </div>
+      <img class='dailyWeatherCode' src="{{ daily.weather_code}}" />
+      <div class="currentWeather">
+        <span class="currentTemp">{{hourly.temperature_2m[0]}}°</span>
+        <span class="rain">Rain: {{daily.rain_sum}} in</span>
+      </div>
     </div>
     <ul>
       {% for item in hourly.temperature_2m %}
       <li>
-        <span>time: {{ forloop.index }}</span>
-        <span>temprature: {{ item }}</span>
+        <span>{{ hourly.time[forloop.index0] }}</span>
+        <img src="{{hourly.weather_code[forloop.index0]}}"/>
+        <span>{{ item }}°</span>
       </li>
       {% endfor %}
     </ul>
