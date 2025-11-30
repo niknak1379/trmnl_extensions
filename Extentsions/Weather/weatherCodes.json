@@ -2,91 +2,91 @@
   "0": {
     "day": {
       "description": "Sunny",
-      "image": "http://openweathermap.org/img/wn/01d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/clearDay.svg"
     },
     "night": {
       "description": "Clear",
-      "image": "http://openweathermap.org/img/wn/01n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/clearNight.svg"
     }
   },
   "1": {
     "day": {
       "description": "Mainly Sunny",
-      "image": "http://openweathermap.org/img/wn/01d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/clearDay.svg"
     },
     "night": {
       "description": "Mainly Clear",
-      "image": "http://openweathermap.org/img/wn/01n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/clearNight.svg"
     }
   },
   "2": {
     "day": {
       "description": "Partly Cloudy",
-      "image": "http://openweathermap.org/img/wn/02d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/partlyCloudyDay.svg"
     },
     "night": {
       "description": "Partly Cloudy",
-      "image": "http://openweathermap.org/img/wn/02n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/partlyCloudyNight.svg"
     }
   },
   "3": {
     "day": {
       "description": "Cloudy",
-      "image": "http://openweathermap.org/img/wn/03d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/cloudy.svg"
     },
     "night": {
       "description": "Cloudy",
-      "image": "http://openweathermap.org/img/wn/03n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/cloudy.svg"
     }
   },
   "45": {
     "day": {
       "description": "Foggy",
-      "image": "http://openweathermap.org/img/wn/50d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/foggy.svg"
     },
     "night": {
       "description": "Foggy",
-      "image": "http://openweathermap.org/img/wn/50n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/foggy.svg"
     }
   },
   "48": {
     "day": {
       "description": "Rime Fog",
-      "image": "http://openweathermap.org/img/wn/50d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/foggy.svg"
     },
     "night": {
       "description": "Rime Fog",
-      "image": "http://openweathermap.org/img/wn/50n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/foggy.svg"
     }
   },
   "51": {
     "day": {
       "description": "Light Drizzle",
-      "image": "http://openweathermap.org/img/wn/09d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/Drizzle.svg"
     },
     "night": {
       "description": "Light Drizzle",
-      "image": "http://openweathermap.org/img/wn/09n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/Drizzle.svg"
     }
   },
   "53": {
     "day": {
       "description": "Drizzle",
-      "image": "http://openweathermap.org/img/wn/09d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/Drizzle.svg"
     },
     "night": {
       "description": "Drizzle",
-      "image": "http://openweathermap.org/img/wn/09n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/Drizzle.svg"
     }
   },
   "55": {
     "day": {
       "description": "Heavy Drizzle",
-      "image": "http://openweathermap.org/img/wn/09d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/Drizzle.svg"
     },
     "night": {
       "description": "Heavy Drizzle",
-      "image": "http://openweathermap.org/img/wn/09n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/Drizzle.svg"
     }
   },
   "56": {
@@ -112,31 +112,31 @@
   "61": {
     "day": {
       "description": "Light Rain",
-      "image": "http://openweathermap.org/img/wn/10d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/lightRain.svg"
     },
     "night": {
       "description": "Light Rain",
-      "image": "http://openweathermap.org/img/wn/10n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/lightRain.svg"
     }
   },
   "63": {
     "day": {
       "description": "Rain",
-      "image": "http://openweathermap.org/img/wn/10d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/heavyRain.svg"
     },
     "night": {
       "description": "Rain",
-      "image": "http://openweathermap.org/img/wn/10n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/heavyRain.svg"
     }
   },
   "65": {
     "day": {
       "description": "Heavy Rain",
-      "image": "http://openweathermap.org/img/wn/10d@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/heavyRain.svg"
     },
     "night": {
       "description": "Heavy Rain",
-      "image": "http://openweathermap.org/img/wn/10n@2x.png"
+      "image": "http://10.193.11.116:2300/Assets/WeatherIcons/heavyRain.svg"
     }
   },
   "66": {
