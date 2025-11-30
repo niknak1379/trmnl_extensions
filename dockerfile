@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install --no-package-lock
-
+ENV TZ=America/Los_Angeles
 COPY . .
 EXPOSE 3000
 
