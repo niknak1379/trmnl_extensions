@@ -95,8 +95,11 @@ async function Weather() {
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth() + 1; // Add 1 because months are 0-indexed
       const day = currentDate.getDate();
-      const formattedDate = `${day}/${month}/${year}`; //  Example: "28/11/2025"
-      // Note: The order of weather variables in the URL query and the indices below need to match!
+      const formattedDate = `${day}/${month}/${year}`; 
+
+ 
+      // this code snipet was just from their own SDKs api maker page, idk why their return values
+      // are so insanely weird that they were forced to make this in the first placel lol
       const weatherData = {
         hourly: {
           time: Array.from(
@@ -135,30 +138,35 @@ async function Weather() {
         },
       };
 
-      // The 'weatherData' object now contains a simple structure, with arrays of datetimes and weather information
-      //console.log("\nHourly data:\n", weatherData.hourly);
-      //console.log("\nDaily data:\n", weatherData.daily); 
       // Get current hour
       const now = new Date();
       const currentHour = now.getHours();
+      //format current time and weather code icon
       const next5HoursArray = [];
       const weatherCodeArray = [];
+
       for (let i = 0; i < 5; i++) {
         const hourIndex = (currentHour + i) % 24;
         const hour = (currentHour + i) % 24;
+        //get am pm
         const period = hour >= 12 ? "PM" : "AM";
-        const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
-        
+        // convert from 24 hour to 12
+        const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;    
+        next5HoursArray.push(`${displayHour} ${period}`);
         // Safely get sunrise and sunset times
         let isDay = true; // Default to day
         
         if (weatherData.daily.sunrise && weatherData.daily.sunset) {
-          const sunriseDate = new Date(weatherData.daily.sunrise[0]);
-          const sunsetDate = new Date(weatherData.daily.sunset[0]);
+          // console.log('removing z', weatherData.daily.sunrise[0].toString().replace('Z', ''))
+          const sunriseDateZ = new Date(weatherData.daily.sunrise[0]);
+          const sunsetDateZ = new Date(weatherData.daily.sunset[0]);
+          const sunriseDate = new Date(sunriseDateZ.toISOString().replace('Z', ''));
+          const sunsetDate = new Date(sunsetDateZ.toISOString().replace('Z', ''));
           const sunriseHour = sunriseDate.getHours();
           const sunsetHour = sunsetDate.getHours();
           
           isDay = hour >= sunriseHour && hour < sunsetHour;
+          // console.log('isday is', isDay, 'currentHour', hour, 'sunriseHour', sunriseHour, 'sethour', sunsetHour)
         }
         
         const timeOfDay = isDay ? 'day' : 'night';
@@ -167,8 +175,6 @@ async function Weather() {
         // Push the appropriate image with fallback 
         const image = weatherCodes[weatherCode]?.[timeOfDay]?.image || '';
         weatherCodeArray.push(image);
-        
-        next5HoursArray.push(`${displayHour} ${period}`);
       }
       // Get next 5 hours of data
       const next5Hours = {
