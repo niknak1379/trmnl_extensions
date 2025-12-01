@@ -26,7 +26,7 @@ app.get("/health", (req, res) => {
 
 app.listen(3000, () => {
   console.log("server listening on port 3000");
-  scheduler("weather.liquid", Weather, 1000 * 60 * 60, 37, "weather");
+  scheduler("weather.liquid", Weather, 1000 * 10 * 60, 37, "weather");
 });
 
 export default engine;
