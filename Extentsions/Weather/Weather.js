@@ -166,7 +166,7 @@ async function Weather() {
           const sunsetHour = sunsetDate.getHours();
           
           isDay = hour >= sunriseHour && hour < sunsetHour;
-          // console.log('isday is', isDay, 'currentHour', hour, 'sunriseHour', sunriseHour, 'sethour', sunsetHour)
+          //  console.log('isday is', isDay, 'currentHour', hour, 'sunriseHour', sunriseHour, 'sethour', sunsetHour)
         }
         
         const timeOfDay = isDay ? 'day' : 'night';
