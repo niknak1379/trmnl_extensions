@@ -41,7 +41,7 @@ jobs:
           tags: tag:master
       - name: Docker Compose Pull
         run: |
-          ssh ${{ secrets.RASPBERRYPI_USER }}@${{ secrets.RASPBERRYPI_TAILSCALE_IP }} << 'EOF'
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.RASPBERRYPI_USER }}@${{ secrets.RASPBERRYPI_TAILSCALE_IP }} << 'EOF'
               mkdir TRMNL_EXTENSIONS
               cd ~/TRMNL_EXTENSIONS
               sudo docker-compose pull
