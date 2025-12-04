@@ -5,3 +5,8 @@ services:
     ports:
       - "3000:3000"
     restart: unless-stopped
+    environment:
+      - TRMNL_USER=${TRMNL_USER}
+      - TRMNL_URL=${TRMNL_URL}
+      - TRMNL_PASSWORD=${TRMNL_PASSWORD}
+      - INTERNAL_INTEGRATION_SECRET=${INTERNAL_INTEGRATION_SECRET}
