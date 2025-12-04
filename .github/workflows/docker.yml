@@ -42,14 +42,15 @@ jobs:
       - name: copy compose.yml and .env
         run: |
           mkdir -p TRMNL_EXTENSIONS
-          cp docker-compose.yml ~/TRMNL_EXTENSIONS/docker-compose.yml
-          cd ~/TRMNL_EXTENSIONS
+          cp docker-compose.yml TRMNL_EXTENSIONS/docker-compose.yml
+          cd TRMNL_EXTENSIONS
           cat > .env << EOL
           TRMNL_USER=${{secrets.TRMNL_USER}}
           TRMNL_URL=${{secrets.TRMNL_URL}}
           TRMNL_PASSWORD=${{secrets.TRMNL_PASSWORD}}
           INTERNAL_INTEGRATION_SECRET=${{secrets.INTERNAL_INTEGRATION_SECRET}}
           EOL
+          cd ..
           scp -r ~/TRMNL_EXTENSIONS ${{ secrets.RASPBERRYPI_USER }}@${{ secrets.RASPBERRYPI_TAILSCALE_IP }}:~/
       - name: Docker Compose Pull
         run: |
