@@ -54,14 +54,14 @@ jobs:
           scp -r -o "StrictHostKeyChecking no" TRMNL_EXTENSIONS ${{ secrets.RASPBERRYPI_USER }}@${{ secrets.RASPBERRYPI_TAILSCALE_IP }}:~/
       - name: Docker Compose Pull
         run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.RASPBERRYPI_USER }}@${{ secrets.RASPBERRYPI_TAILSCALE_IP }} << 'EOF'
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.RASPBERRYPI_USER }}@${{ secrets.RASPBERRYPI_TAILSCALE_IP }} << EOF
               cd TRMNL_EXTENSIONS
-              sudo docker-compose pull
-              sudo docker-compose down
-              sudo docker-compose up -d
+              sudo docker compose pull
+              sudo docker compose down
+              sudo docker compose up -d
               echo "Running containers:"
-              sudo docker-compose ps
+              sudo docker compose ps
               echo "Container logs:"
-              sudo docker-compose logs --tail=50
+              sudo docker compose logs --tail=50
               sudo docker image prune -f
             EOF
