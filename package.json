@@ -10,6 +10,7 @@
     "test": "doppler run -- npx nodemon index.js"
   },
   "dependencies": {
+    "@notionhq/client": "^5.4.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "liquidjs": "^10.24.0",
