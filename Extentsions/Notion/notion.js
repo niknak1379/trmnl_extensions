@@ -8,8 +8,8 @@ import { Client } from "@notionhq/client";
             dueDate: null,
             priority: null,
             title: 'Update hjkl for mac aerospace'
-        }
-        ],
+        }   
+        ],      
         progList: inprogress_tasks_array,
         doneList: done_tasks_array
         }
@@ -52,15 +52,19 @@ export async function notion_tasks() {
     for (let page of response.results) {
       const pageData = await notion.pages.retrieve({ page_id: page.id });
       item.array.push({
-        dueDate: pageData.properties["Due Date"].date,
-        priority: pageData.properties.Priority.select,
+        dueDate: pageData.properties["Due Date"].date?.start,
+        priority: pageData.properties.Priority.select?.name,
         title: pageData.properties["Task Name"].title[0].plain_text,
       });
     }
     console.log("logging processed array", item.status, "\n", item.array);
   }
   return {
-    lists: [todo_tasks_array, inprogress_tasks_array, done_tasks_array],
+    lists: [
+      { status: "To Do", list: todo_tasks_array },
+      { status: "In Progress", list: inprogress_tasks_array },
+      { status: "Done", list: done_tasks_array },
+    ],
   };
 }
 export default notion_tasks;

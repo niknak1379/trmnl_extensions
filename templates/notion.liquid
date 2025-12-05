@@ -6,19 +6,89 @@
     model.name
   }} screen--lg screen--{{ model.orientation }} screen--1x"
 >
+<style>
+    *{
+        font-family: "Science Gothic", sans-serif;
+        margin: 0px;
+        padding: 2px;
+    }
+    div.view{
+        width: 800px;
+        height: 480px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+    div.header span{
+        font-size: 64px;
+        border: solid 4px black;
+    }
+    div.listWrapper{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        flex-basis: 0;
+        flex-grow: 1;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    div.listWrapper > span{
+        font-size: 16px;
+        text-align: center;
+
+    }
+    div.lists{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+    ul{
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: stretch !important;
+        gap: 8px;
+        flex-grow: 1;
+        padding: 4px;
+        border: 1px solid black;
+    }
+    li{
+        list-style: none;
+        border: 2px solid black;
+        border-bottom: 4px solid black;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // width: 100%;
+        align-items: flex-start;
+    }
+    li span.priority,
+    li span.dueDate{
+        font-size: 8px;
+    }
+</style>
   <div class="view view--full">
     <div class="header">
-
+        <span>Life Kanban</span>
     </div>
-    <div>
-        {% for list in lists %}
-            <ul>
-                {% for task in list %}
-                    <li>
-                        {{task.title}}
-                    </li>
-                {% endfor %}
-            </ul>
+    <div class="lists">
+        {% for item in lists %}
+            <div class="listWrapper">
+                <span> {{item.status}} </span>
+                <ul>
+                    {% for task in item.list limit: 5 %}
+                        <li>
+                            <span class="title">{{task.title}}</span>
+                            <span class="priority">{{task.priority}}</span>
+                            <span class="dueDate">{{task.dueDate}}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         {% endfor %}
     </div>
   </div>
