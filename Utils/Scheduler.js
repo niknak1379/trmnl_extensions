@@ -13,6 +13,7 @@ async function scheduler(tempalteFile, dataFunc, howOften, screenID, taskName) {
     Data
   );
   let trmnlHTML = await engine.renderFile(tempalteFile, Data);
+  console.log(trmnlHTML);
   let access_token;
   try {
     access_token = await trmnlAuth();

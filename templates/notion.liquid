@@ -1,0 +1,25 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Science+Gothic:wght@100..900&display=swap" rel="stylesheet">
+<div
+  class="screen screen--{{ model.bit_depth }}bit screen--{{
+    model.name
+  }} screen--lg screen--{{ model.orientation }} screen--1x"
+>
+  <div class="view view--full">
+    <div class="header">
+
+    </div>
+    <div>
+        {% for list in lists %}
+            <ul>
+                {% for task in list %}
+                    <li>
+                        {{task.title}}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+  </div>
+</div>
