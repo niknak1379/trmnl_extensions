@@ -51,8 +51,17 @@ export async function notion_tasks() {
     //console.log(response);
     for (let page of response.results) {
       const pageData = await notion.pages.retrieve({ page_id: page.id });
+      // process date object
+      let date;
+      if (pageData.properties["Due Date"].date != null) {
+        date = new Date(pageData.properties["Due Date"].date?.start);
+        date = `${date.getDate()}/${date.getMonth() + 1}`;
+      } else {
+        date = null;
+      }
+
       item.array.push({
-        dueDate: pageData.properties["Due Date"].date?.start,
+        dueDate: date,
         priority: pageData.properties.Priority.select?.name,
         title: pageData.properties["Task Name"].title[0].plain_text,
       });

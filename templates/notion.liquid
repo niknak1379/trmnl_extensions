@@ -10,7 +10,7 @@
     *{
         font-family: "Science Gothic", sans-serif;
         margin: 0px;
-        padding: 2px;
+        box-sizing: border-box;
     }
     div.view{
         width: 800px;
@@ -18,12 +18,17 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: stretch;
         gap: 8px;
+        padding: 8px;
     }
-    div.header span{
-        font-size: 64px;
-        border: solid 4px black;
+    div.lists{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: start;
+        gap: 16px;
+        overflow: hidden;
     }
     div.listWrapper{
         display: flex;
@@ -35,46 +40,48 @@
         align-items: stretch;
     }
     div.listWrapper > span{
-        font-size: 16px;
+        font-size: 20px;
         text-align: center;
+        font-weight: bolder;
 
     }
-    div.lists{
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-    }
+
     ul{
         font-size: 16px;
         display: flex;
         flex-direction: column;
         justify-content: start;
         align-items: stretch !important;
-        gap: 8px;
+        gap: 16px;
         flex-grow: 1;
-        padding: 4px;
+        padding: 12px;
         border: 1px solid black;
     }
     li{
         list-style: none;
         border: 2px solid black;
-        border-bottom: 4px solid black;
+        box-shadow: 5px 5px gray;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
-        // width: 100%;
         align-items: flex-start;
+        
+        padding: 4px;
+    }
+    li span.cardProperties {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        background-color: lightgray;
+        gap: 8px;
     }
     li span.priority,
     li span.dueDate{
-        font-size: 8px;
+        font-size: 12px;
     }
 </style>
   <div class="view view--full">
-    <div class="header">
-        <span>Life Kanban</span>
-    </div>
     <div class="lists">
         {% for item in lists %}
             <div class="listWrapper">
@@ -82,9 +89,18 @@
                 <ul>
                     {% for task in item.list limit: 5 %}
                         <li>
+                            <span class="cardProperties">
+
+                                {% if task.dueDate %}
+                                    <span class="dueDate">{{task.dueDate}}</span>
+                                {% endif %}
+                                
+                                {% if task.priority %}
+                                 <span class="priority">{{task.priority}}</span>
+                                {% endif %}
+
+                            </span>
                             <span class="title">{{task.title}}</span>
-                            <span class="priority">{{task.priority}}</span>
-                            <span class="dueDate">{{task.dueDate}}</span>
                         </li>
                     {% endfor %}
                 </ul>
