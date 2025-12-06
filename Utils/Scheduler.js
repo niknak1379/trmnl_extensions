@@ -45,6 +45,14 @@ async function scheduler(tempalteFile, dataFunc, howOften, screenID, taskName) {
   } catch (e) {
     console.log("Error in scheduler when trying to update the screen\n", e);
   }
-  setTimeout(scheduler, howOften);
+  setTimeout(
+    scheduler,
+    howOften,
+    tempalteFile,
+    dataFunc,
+    howOften,
+    screenID,
+    taskName
+  );
 }
 export default scheduler;

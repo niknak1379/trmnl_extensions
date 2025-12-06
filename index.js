@@ -28,7 +28,7 @@ app.get("/health", (req, res) => {
 app.listen(3000, () => {
   console.log("server listening on port 3000");
   // scheduler("weather.liquid", Weather, 1000 * 10 * 60, 3, "weather");
-  scheduler("notion.liquid", notion_tasks, 1000 * 10 * 60, 4, "notion tasks");
+  scheduler("notion.liquid", notion_tasks, 1000 * 60 * 60, 4, "notion tasks");
 });
 
 export default engine;
