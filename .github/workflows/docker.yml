@@ -49,6 +49,7 @@ jobs:
           TRMNL_URL=${{secrets.TRMNL_URL}}
           TRMNL_PASSWORD=${{secrets.TRMNL_PASSWORD}}
           INTERNAL_INTEGRATION_SECRET=${{secrets.INTERNAL_INTEGRATION_SECRET}}
+          NOTION_DATASOURCE_ID=${{secrets.NOTION_DATASOURCE_ID}}
           EOL
           cd ..
           scp -r -o "StrictHostKeyChecking no" TRMNL_EXTENSIONS ${{ secrets.RASPBERRYPI_USER }}@${{ secrets.RASPBERRYPI_TAILSCALE_IP }}:~/
