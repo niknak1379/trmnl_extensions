@@ -43,7 +43,7 @@ export async function notion_tasks() {
       },
       sort: [
         {
-          property: "Due date",
+          property: "dueDate",
           direction: "descending",
         },
       ],
