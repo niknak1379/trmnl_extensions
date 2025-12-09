@@ -43,12 +43,12 @@ export async function notion_tasks() {
       },
       sort: [
         {
-          property: "dueDate",
+          property: "G%5Db%3B",
           direction: "ascending",
         },
       ],
     });
-    //console.log(response);
+    console.log(response);
     for (let page of response.results) {
       const pageData = await notion.pages.retrieve({ page_id: page.id });
       // process date object
